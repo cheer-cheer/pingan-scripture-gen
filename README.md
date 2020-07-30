@@ -22,7 +22,7 @@
 python ./main.py
 ```
 
-执行后，会在 `out` 目录输出 `scripture.md` 文件。然后您就可以使用任何一款 Markdown 查看器打开这个文件来欣赏您的佳作，陶冶性情。
+执行后，会在 `out` 目录输出 [`scripture.md`](out/scripture.md) 文件。然后您就可以使用任何一款 Markdown 查看器打开这个文件来欣赏您的佳作，陶冶性情。
 
 ## 自定义
 
