@@ -10,7 +10,7 @@ import os
 from utils import to_chinese
 
 
-def gen_content(f, word: str, curr_dir: str = 'lists'):
+def _gen_content(f, word: str, curr_dir: str = 'lists'):
     manifest_file = os.path.join(curr_dir, '_manifest.txt')
     if not os.path.isfile(manifest_file):
         print(f'{curr_dir}：找不到清单文件。')
@@ -41,9 +41,9 @@ def gen_content(f, word: str, curr_dir: str = 'lists'):
                 # 读取文章内容
                 with open(dir_or_file, 'r', encoding='utf-8') as af:
                     lines = (f'{line.strip()}{word}' for line in af if line.strip())
-                    f.write('　　' + '，'.join((f'{line}' for line in lines)) + '。\n\n')
+                    f.write('　　' + '，'.join((f'{line}' for line in lines if not line.startswith('#'))) + '。\n\n')
             elif os.path.isdir(dir_or_file):
-                gen_content(f, word, dir_or_file)
+                _gen_content(f, word, dir_or_file)
             else:
                 print(f'{dir_or_file}：文件或目录不存在。')
 
@@ -59,7 +59,7 @@ def main():
         # 写作者
         f.write('作者：' + manifest.get('author', '佚名') + '\n\n')
         # 写内容
-        gen_content(f, word)
+        _gen_content(f, word)
 
     print('生成完成。')
 
